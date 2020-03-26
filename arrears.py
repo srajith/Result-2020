@@ -8,7 +8,8 @@
 import requests
 import re
 import concurrent.futures
-
+import sys
+from tabulate import tabulate
 
 def run(user):
     username = user
@@ -25,7 +26,7 @@ def run(user):
     }
 
     response = requests.post(
-        'https://egovernance.unom.ac.in/resultnocap/', data=data)
+        url, data=data)
     re_status = re.findall(
         r'<b>RA</b>|<b>A</b>|<b>F</b>|<b>P</b>', response.text)
 
@@ -38,10 +39,20 @@ def run(user):
     for i in range(len(re_status)):
         if "A" in re_status[i]:
             string += re_sub[i] + ","
-    arrear[username] = string
-    print(arrear)
+    # arrear[username] = string
+    if string == "":
+        string += "none"
 
+    print(tabulate([[username, string],], tablefmt="rst"))
 
-with concurrent.futures.ThreadPoolExecutor() as executor:
-    roll_number = [roll for roll in range(221810449, 221810499)]
-    executor.map(run, roll_number)
+if __name__ == '__main__':
+    url = 'https://egovernance.unom.ac.in/resultnocap/'
+    status = requests.get(url)
+    if status.status_code == 200:
+        print("Valid url submitted ! ")
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            roll_number = [roll for roll in range(221810449, 221810499)]
+            executor.map(run, roll_number)
+    else:
+        print("Invalid url ! ")
+        sys.exit()
