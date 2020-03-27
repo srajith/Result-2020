@@ -11,6 +11,7 @@ import concurrent.futures
 import sys
 from tabulate import tabulate
 
+
 def calc_arrears(roll):
     roll_no = roll
 
@@ -21,7 +22,7 @@ def calc_arrears(roll):
         '__EVENTTARGET': '',
         '__EVENTARGUMENT': '',
         '__EVENTVALIDATION': '/wEdAAMM1iTKfqRaR+qYZptN5JwpESCFkFW/RuhzY1oLb/NUVM34O/GfAV4V4n0wgFZHr3fON8hWKDQq3TURb4VWk91Q+JSmQ8P4fnfGKZMawLVg9Q==',
-        'TextBox1': roll_no,  
+        'TextBox1': roll_no,
         'Button1': 'Get Marks'
     }
 
@@ -42,7 +43,8 @@ def calc_arrears(roll):
     if string == "":
         string += "none"
 
-    print(tabulate([[roll_no, string],], tablefmt="rst"))
+    print(tabulate([[roll_no, string], ], tablefmt="rst"))
+
 
 if __name__ == '__main__':
     url = 'https://egovernance.unom.ac.in/resultnocap/'

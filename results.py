@@ -25,7 +25,7 @@ def calc_marks(roll):
         'Button1': 'Get Marks'
     }
 
-    response = s.post('https://egovernance.unom.ac.in/resultnocap/', data=data)
+    response = s.post(url, data=data)
 
     re_marks = re.findall(r'<b>\d{3}</b>|<b>AAA</b>', response.text)
 
@@ -59,6 +59,7 @@ def calc_marks(roll):
 
 if __name__ == "__main__":
 
+    url = 'https://egovernance.unom.ac.in/resultnocap/'
     roll_number = [roll for roll in range(221810449, 221810499)]
     subjects = [
         'CLK3V',
