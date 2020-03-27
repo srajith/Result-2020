@@ -1,7 +1,7 @@
-# Automatic result parser and calculator 
+# Automatic Result Parser 
 
 ## Install Dependencies 
-    python3 -m pip install requests
+    pip install -r requirements.txt
 
 ## To Run 
-```python3 results.py```
+```python3 filename.py```
