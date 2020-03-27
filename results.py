@@ -10,10 +10,10 @@ import re
 import concurrent.futures
 
 
-def calc_marks(user_id):
+def calc_marks(roll):
     s = requests.Session()
 
-    userid = user_id
+    roll_no = roll
     data = {
         '__LASTFOCUS': '',
         '__VIEWSTATE': '/wEPDwULLTExNDk4NTI2NzcPZBYCAgMPZBYUAg0PD2QWAh4Hb25jbGljawURcmV0dXJuIHZhbGlkYXRlKClkAg8PDxYCHgdWaXNpYmxlaGRkAhMPDxYCHwFoZGQCFQ88KwAKAGQCFw88KwARAwAPZBYCHgtib3JkZXJjb2xvcgUHI0Y0RjRGNAEQFgAWABYADBQrAABkAhkPDxYCHwFoZGQCGw8PFgIfAWhkZAIdDw8WAh8BaGRkAh8PDxYCHwFoZGQCIQ8PFgIfAWhkZBgCBQlHcmlkVmlldzEPZ2QFCUZvcm1WaWV3MQ9nZLaGGV84hEKN39bx3qJj+4a+uqf4R6P0rR8C8lOVSVpq',
@@ -21,7 +21,7 @@ def calc_marks(user_id):
         '__EVENTTARGET': '',
         '__EVENTARGUMENT': '',
         '__EVENTVALIDATION': '/wEdAAMM1iTKfqRaR+qYZptN5JwpESCFkFW/RuhzY1oLb/NUVM34O/GfAV4V4n0wgFZHr3fON8hWKDQq3TURb4VWk91Q+JSmQ8P4fnfGKZMawLVg9Q==',
-        'TextBox1': str(userid),
+        'TextBox1': str(roll_no),
         'Button1': 'Get Marks'
     }
 
@@ -54,7 +54,7 @@ def calc_marks(user_id):
     for sub_code in subjects:
         if sub_code in result:
             total += result[sub_code]
-    results[userid] = total
+    results[roll_no] = total
 
 
 if __name__ == "__main__":

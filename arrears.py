@@ -11,8 +11,8 @@ import concurrent.futures
 import sys
 from tabulate import tabulate
 
-def run(user):
-    username = user
+def calc_arrears(roll):
+    roll_no = roll
 
     data = {
         '__LASTFOCUS': '',
@@ -21,7 +21,7 @@ def run(user):
         '__EVENTTARGET': '',
         '__EVENTARGUMENT': '',
         '__EVENTVALIDATION': '/wEdAAMM1iTKfqRaR+qYZptN5JwpESCFkFW/RuhzY1oLb/NUVM34O/GfAV4V4n0wgFZHr3fON8hWKDQq3TURb4VWk91Q+JSmQ8P4fnfGKZMawLVg9Q==',
-        'TextBox1': username,  # '221810495',
+        'TextBox1': roll_no,  
         'Button1': 'Get Marks'
     }
 
@@ -39,11 +39,10 @@ def run(user):
     for i in range(len(re_status)):
         if "A" in re_status[i]:
             string += re_sub[i] + ","
-    # arrear[username] = string
     if string == "":
         string += "none"
 
-    print(tabulate([[username, string],], tablefmt="rst"))
+    print(tabulate([[roll_no, string],], tablefmt="rst"))
 
 if __name__ == '__main__':
     url = 'https://egovernance.unom.ac.in/resultnocap/'
@@ -52,7 +51,7 @@ if __name__ == '__main__':
         print("Valid url submitted ! ")
         with concurrent.futures.ThreadPoolExecutor() as executor:
             roll_number = [roll for roll in range(221810449, 221810499)]
-            executor.map(run, roll_number)
+            executor.map(calc_arrears, roll_number)
     else:
         print("Invalid url ! ")
         sys.exit()
