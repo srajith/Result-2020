@@ -3,13 +3,12 @@
 # @Author: srajith
 # @Date:   2020-03-25 14:08:18
 # @Last Modified by:   srajith
-# @Last Modified time: 2020-03-25 15:04:13
+# @Last Modified time: 2020-03-29 18:44:23
 
 import requests
 import re
 import concurrent.futures
 import sys
-from tabulate import tabulate
 
 
 def calc_arrears(roll):
@@ -36,15 +35,12 @@ def calc_arrears(roll):
     re_sub = re.findall(r'\w{5}', ''.join(re_sub))
 
     string = ""
-    arrear = {}
     for i in range(len(re_status)):
         if "A" in re_status[i]:
             string += re_sub[i] + ","
-    if string == "":
-        string += "none"
 
-    print(tabulate([[roll_no, string], ], tablefmt="rst"))
-
+    print("{} ===> {}".format(roll_no, string))
+    
 
 if __name__ == '__main__':
     url = 'https://egovernance.unom.ac.in/resultnocap/'
