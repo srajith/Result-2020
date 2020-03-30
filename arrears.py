@@ -5,10 +5,10 @@
 # @Last Modified by:   srajith
 # @Last Modified time: 2020-03-29 18:44:23
 
-import requests
 import re
-import concurrent.futures
 import sys
+import requests
+import concurrent.futures
 
 
 def calc_arrears(roll):

@@ -7,9 +7,9 @@
 
 
 import re
+import sys
 import requests
 import concurrent.futures
-import sys
 
 def calc_reval(roll):
     s = requests.Session()

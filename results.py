@@ -5,10 +5,10 @@
 # @Last Modified by:   srajith
 # @Last Modified time: 2020-03-21 23:50:28
 
-import requests
 import re
+import sys
+import requests
 import concurrent.futures
-
 
 def calc_marks(roll):
     s = requests.Session()
@@ -60,20 +60,27 @@ def calc_marks(roll):
 if __name__ == "__main__":
 
     url = 'https://egovernance.unom.ac.in/resultnocap/'
-    roll_number = [roll for roll in range(221810449, 221810499)]
-    subjects = [
-        'CLK3V',
-        'CLZ3P',
-        'SAE31',
-        'SAE3A',
-        'SBAOC',
-        'TSSEG',
-        'CLE3H',
-        'CLA3M']
-    results = {}
+    status = requests.get(url)
+    if status.status_code == 200:
+        print("Valid url submitted ! ")
+    
+        roll_number = [roll for roll in range(221810449, 221810499)]
+        subjects = [
+            'CLK3V',
+            'CLZ3P',
+            'SAE31',
+            'SAE3A',
+            'SBAOC',
+            'TSSEG',
+            'CLE3H',
+            'CLA3M']
+        results = {}
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        executor.map(calc_marks, roll_number)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            executor.map(calc_marks, roll_number)
 
-    for key, value in sorted(results.items()):
-        print("{} ===> {} ===> {}".format(key, value, value / 6))
+        for key, value in sorted(results.items()):
+            print("{} ===> {} ===> {}".format(key, value, value / 6))
+    else:
+        print("Invalid url ! ")
+        sys.exit()
