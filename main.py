@@ -58,7 +58,10 @@ def calc_arrears(roll):
         if "A" in re_status[i]:
             string += re_sub[i] + ","
 
-    print("{} ===> {}".format(roll_no, string))
+    if string == "":
+        print("{} ===> None".format(roll_no))
+    else:
+        print("{} ===> {}".format(roll_no, string))
 
 
 def calc_result(roll):
@@ -72,7 +75,7 @@ def calc_result(roll):
         '__EVENTTARGET': '',
         '__EVENTARGUMENT': '',
         '__EVENTVALIDATION': '/wEdAAMM1iTKfqRaR+qYZptN5JwpESCFkFW/RuhzY1oLb/NUVM34O/GfAV4V4n0wgFZHr3fON8hWKDQq3TURb4VWk91Q+JSmQ8P4fnfGKZMawLVg9Q==',
-        'TextBox1': str(roll_no),
+        'TextBox1': roll_no,
         'Button1': 'Get Marks'
     }
 
