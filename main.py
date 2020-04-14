@@ -1,5 +1,9 @@
-
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# @Author: r4j
+# @Date:   2020-04-14 17:47:24
+# @Last Modified by:   r4j
+# @Last Modified time: 2020-04-14 17:50:52
 
 import re
 import sys
@@ -208,6 +212,9 @@ def Main():
 
 
 if __name__ == "__main__":
-    results = {}
-    Main()
+	if len(sys.argv) < 2:
+		print(f"Run python3 {sys.argv[0]} --help")
+	else:
+	    results = {}
+	    Main()
 # Todo output func 
